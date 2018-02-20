@@ -108,36 +108,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 				}
 			}
 		});
-/*
-	marker[i].addListener('click', function(event)
-		{
-			var latMarker = event.latLng.lat();
-			var lngMarker = event.latLng.lng();
 
-			for(var i = 0 ; i< data.length ; i++)
-			{
-				if (latMarker==data[i].lat && lngMarker==data[i].lng) 
-				{
-					if(infowindow[i])
-					{
-						infowindow[i].close();
-					}
-					infowindow[i] = new google.maps.InfoWindow
-						({
-						content:"<div style='width:180px;height:90px; border:none'>"+
-								"<p><I><b> Name :"+ markerContent[i] + "</I></b></br>" +
-								"Address :"+ data[i].custAdd + "</br>" +
-								"State :"+ data[i].custState + "</br>" +
-								"City :"+ data[i].custCity + "</br>" +
-								"</p>" +
-								"</div>"
-						});
-					infowindow[i].open(mapadd, marker[i]);
-				}
-			}
-		});
-*/
-	
 	}
 
 }
