@@ -109,6 +109,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 								"Address :"+ data[i].custAdd + "</br>" +
 								"State :"+ data[i].custState + "</br>" +
 								"City :"+ data[i].custCity + "</br>" +
+								"City :"+ data[i].custCity + "</br>" +
 								"</p>" +
 						"<button style='width:60px;height:20px'; onclick='NavCust(" + data[i].custid + ")'> Navigate </button>" +
 								"</div>"
