@@ -141,6 +141,6 @@ function navigateCustomer(custid)
 {
 	var scriptFM = "fmp://$/GasketApp.fmp12?script=NavigateCustomer_TriggerJS&param="+custid;
 	//var scriptFM = "fmp://XMLUser:XMLUser@"+ip+"/GasketApp.fmp12?script=NavigateCustomer_TriggerJS&param="+custid;
-	//alert(scriptFM);
+	alert(scriptFM);
 	window.location( scriptFM );
 }
