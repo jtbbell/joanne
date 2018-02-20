@@ -104,7 +104,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 					}
 					infowindow[i] = new google.maps.InfoWindow
 						({
-						content:"<div style='width:180px;height:90px; border:none'>"+
+						content:"<div style='width:180px;height:110px; border:none'>"+
 								"<p><I><b> Name :"+ markerContent[i] + "</I></b></br>" +
 								"Address :"+ data[i].custAdd + "</br>" +
 								"State :"+ data[i].custState + "</br>" +
