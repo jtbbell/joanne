@@ -44,7 +44,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 
 	var mapObj = document.getElementById("mapviewer");
 	var latlng = new google.maps.LatLng(data[0].lat, data[0].lng);
-	var mapOpt = {center:latlng, zoom:14};
+	var mapOpt = {center:latlng, zoom:20};
 	var mapadd = new google.maps.Map( mapObj, mapOpt);
 	var filePath = fileAdd;
 	var iconImg=[];
