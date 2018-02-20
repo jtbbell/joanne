@@ -104,14 +104,14 @@ for (var i=0 ; i< arr.length-1 ; i++)
 					}
 					infowindow[i] = new google.maps.InfoWindow
 						({
-						content:"<div style='width:180px;height:110px; border:none'>"+
+						content:"<div style='width:180px;height:140px; border:none'>"+
 								"<p><I><b> Name :"+ markerContent[i] + "</I></b></br>" +
 								"Address :"+ data[i].custAdd + "</br>" +
 								"State :"+ data[i].custState + "</br>" +
 								"City :"+ data[i].custCity + "</br>" +
 								"City :"+ data[i].custCity + "</br>" +
 								"</p>" +
-						"<button style='width:60px;height:20px'; onclick='NavCust(" + data[i].custid + ")'> Navigate </button>" +
+						"<button style='width:60px;height:30px'; onclick='NavCust(" + data[i].custid + ")'> Navigate </button>" +
 								"</div>"
 						});
 					infowindow[i].open(mapadd, marker[i]);
