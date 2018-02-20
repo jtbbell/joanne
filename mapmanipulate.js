@@ -108,6 +108,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 				}
 			}
 		});
+/*
 	marker[i].addListener('click', function(event)
 		{
 			var latMarker = event.latLng.lat();
@@ -135,8 +136,10 @@ for (var i=0 ; i< arr.length-1 ; i++)
 				}
 			}
 		});
+*/
 	
 	}
+
 }
 function navigateCustomer(custid)
 {
