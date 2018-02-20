@@ -98,6 +98,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 		{
 			var latMarker = event.latLng.lat();
 			var lngMarker = event.latLng.lng();
+			alert("double click");
 
 			for(var i = 0 ; i< data.length ; i++)
 			{
