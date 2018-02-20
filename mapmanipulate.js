@@ -111,7 +111,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 								"City :"+ data[i].custCity + "</br>" +
 								"City :"+ data[i].custCity + "</br>" +
 								"</p>" +
-			"<button style='width:60px;height:30px'; onclick='NavCust(" + data[i].custid + ")'> Navigate </button>" +
+			"<button style='width:60px;height:30px' onclick='NavCust(" + data[i].custid + ")'> Navigate </button>" +
 								"</div>"
 						});
 					infowindow[i].open(mapadd, marker[i]);
