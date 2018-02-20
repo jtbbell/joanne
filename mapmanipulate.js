@@ -46,7 +46,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 	var latlng = new google.maps.LatLng(data[0].lat, data[0].lng);
 	var mapOpt = {center:latlng, zoom:14};
 	var mapadd = new google.maps.Map( mapObj, mapOpt);
-	var filePath = "/Desktop/QT4G/";
+	var filePath = fileAdd;
 	var iconImg=[];
 	
 	
@@ -141,6 +141,6 @@ function navigateCustomer(custid)
 {
 	var scriptFM = "fmp://$/GasketApp.fmp12?script=NavigateCustomer_TriggerJS&param="+custid;
 	//var scriptFM = "fmp://XMLUser:XMLUser@"+ip+"/GasketApp.fmp12?script=NavigateCustomer_TriggerJS&param="+custid;
-	alert(scriptFM);
+	//alert(scriptFM);
 	window.location( scriptFM );
 }
