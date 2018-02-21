@@ -44,7 +44,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 
 	var mapObj = document.getElementById("mapviewer");
 	var latlng = new google.maps.LatLng(data[0].lat, data[0].lng);
-	var mapOpt = {center:latlng, zoom:16};
+	var mapOpt = {center:latlng, zoom:15};
 	var mapadd = new google.maps.Map( mapObj, mapOpt);
 	var filePath = fileAdd;
 	var iconImg=[];
@@ -111,7 +111,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 								"City :"+ data[i].custCity + "</br>" +
 								"City :"+ data[i].custCity + "</br>" +
 								"</p>" +
-			"<button style='width:80px;height:40px; text-align:center;font-size:16px' onclick='NavCust(" + data[i].custid + ")'> Navigate </button>" +
+			"<button style='width:100px;height:40px; text-align:center;font-size:16px' onclick='NavCust(" + data[i].custid + ")'> Navigate </button>" +
 								"</div>"
 						});
 					infowindow[i].open(mapadd, marker[i]);
