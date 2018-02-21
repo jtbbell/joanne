@@ -44,7 +44,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 
 	var mapObj = document.getElementById("mapviewer");
 	var latlng = new google.maps.LatLng(data[0].lat, data[0].lng);
-	var mapOpt = {center:latlng, zoom:17};
+	var mapOpt = {center:latlng, zoom:16};
 	var mapadd = new google.maps.Map( mapObj, mapOpt);
 	var filePath = fileAdd;
 	var iconImg=[];
@@ -104,14 +104,14 @@ for (var i=0 ; i< arr.length-1 ; i++)
 					}
 					infowindow[i] = new google.maps.InfoWindow
 						({
-						content:"<div style='width:180px;height:140px; border:none'>"+
-								"<p><I><b> Name :"+ markerContent[i] + "</I></b></br>" +
+						content:"<div style='width:200px;height:180px; border:none'>"+
+								"<p style='font-size:16px'><I><b> Name :"+ markerContent[i] + "</I></b></br>" +
 								"Address :"+ data[i].custAdd + "</br>" +
 								"State :"+ data[i].custState + "</br>" +
 								"City :"+ data[i].custCity + "</br>" +
 								"City :"+ data[i].custCity + "</br>" +
 								"</p>" +
-			"<button style='width:60px;height:30px' onclick='NavCust(" + data[i].custid + ")'> Navigate </button>" +
+			"<button style='width:80px;height:40px; text-align:center;font-size:16px' onclick='NavCust(" + data[i].custid + ")'> Navigate </button>" +
 								"</div>"
 						});
 					infowindow[i].open(mapadd, marker[i]);
