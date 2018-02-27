@@ -34,6 +34,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 						"custAdd":arr2[5],
 						"custCity":arr2[6],
 						"custState":arr2[7],
+						"storeContact":arr2[8],
 					} 
 	}
 	//alert(data);
@@ -75,6 +76,11 @@ for (var i=0 ; i< arr.length-1 ; i++)
 	{
 		iconImg[i] = filePath + "TagStore.png";
 	}
+	else
+	{
+		iconImg[i] = filePath + "Unassigned.png";
+	
+	}
 		
 		
 	// Create a marker for the specified locations
@@ -104,14 +110,14 @@ for (var i=0 ; i< arr.length-1 ; i++)
 					}
 					infowindow[i] = new google.maps.InfoWindow
 						({
-						content:"<div style='width:200px;height:180px; border:none'>"+
-								"<p style='font-size:16px'><I><b> Name :"+ markerContent[i] + "</I></b></br>" +
+						content:"<div style='width:220px;height:180px; border:none'>"+
+								"<p style='font-size:16px'><I><b>Company Name :"+ markerContent[i] + "</I></b></br>" +
 								"Address :"+ data[i].custAdd + "</br>" +
 								"State :"+ data[i].custState + "</br>" +
 								"City :"+ data[i].custCity + "</br>" +
-								"City :"+ data[i].custCity + "</br>" +
+								"Store Contact :"+ data[i].storeContact + "</br>" +
 								"</p>" +
-			"<button style='width:100px;height:40px; text-align:center;font-size:16px' onclick='NavCust(" + data[i].custid + ")'> Navigate </button>" +
+			"<button style='width:160px;height:40px; text-align:center;font-size:16px' onclick='NavCust(" + data[i].custid + ")'> Navigate to Details </button>" +
 								"</div>"
 						});
 					infowindow[i].open(mapadd, marker[i]);
