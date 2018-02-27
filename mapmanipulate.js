@@ -35,6 +35,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 						"custCity":arr2[6],
 						"custState":arr2[7],
 						"storeContact":arr2[8],
+						"flag":arr2[9],
 					} 
 	}
 	//alert(data);
@@ -110,12 +111,13 @@ for (var i=0 ; i< arr.length-1 ; i++)
 					}
 					infowindow[i] = new google.maps.InfoWindow
 						({
-						content:"<div style='width:220px;height:180px; border:none'>"+
+						content:"<div style='width:220px;height:200px; border:none'>"+
 								"<p style='font-size:16px'><I><b>Company Name :"+ markerContent[i] + "</I></b></br>" +
 								"Address :"+ data[i].custAdd + "</br>" +
 								"State :"+ data[i].custState + "</br>" +
 								"City :"+ data[i].custCity + "</br>" +
-								"Store Contact :"+ data[i].storeContact + "</br>" +
+								"Store Contact Person :"+ data[i].storeContact + "</br>" +
+								"Flag :"+ data[i].flag + "</br>" +
 								"</p>" +
 			"<button style='width:160px;height:40px; text-align:center;font-size:16px' onclick='NavCust(" + data[i].custid + ")'> Navigate to Details </button>" +
 								"</div>"
