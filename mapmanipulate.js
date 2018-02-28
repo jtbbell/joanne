@@ -111,13 +111,13 @@ for (var i=0 ; i< arr.length-1 ; i++)
 					}
 					infowindow[i] = new google.maps.InfoWindow
 						({
-						content:"<div style='width:220px;height:200px; border:none'>"+
-								"<p style='font-size:16px'><I><b>Company Name :"+ markerContent[i] + "</I></b></br>" +
-								"Address :"+ data[i].custAdd + "</br>" +
-								"State :"+ data[i].custState + "</br>" +
-								"City :"+ data[i].custCity + "</br>" +
-								"Store Contact Person :"+ data[i].storeContact + "</br>" +
-								"Flag :"+ data[i].flag + "</br>" +
+						content:"<div style='width:220px;height:260px; border:none'>"+
+								"<p style='font-size:16px'><I><b>Company: "+ markerContent[i] + "</I></b></br>" +
+								"Address: "+ data[i].custAdd + "</br>" +
+								"City: "+ data[i].custCity + "</br>" +
+								"State: "+ data[i].custState + "</br>" +
+								"Contact: "+ data[i].storeContact + "</br>" +
+								"Note: "+ data[i].flag + "</br>" +
 								"</p>" +
 			"<button style='width:160px;height:40px; text-align:center;font-size:16px' onclick='NavCust(" + data[i].custid + ")'> Navigate to Details </button>" +
 								"</div>"
