@@ -77,6 +77,18 @@ for (var i=0 ; i< arr.length-1 ; i++)
 	{
 		iconImg[i] = filePath + "TagStore.png";
 	}
+	else if(data[i].custtype=="Work Order")
+	{
+		iconImg[i] = filePath + "workorder.png";
+	}
+	else if(data[i].custtype=="Successful Delivery")
+	{
+		iconImg[i] = filePath + "success.png";
+	}
+	else if(data[i].custtype=="Estimate")
+	{
+		iconImg[i] = filePath + "estimate.png";
+	}
 	else
 	{
 		iconImg[i] = filePath + "Unassigned.png";
