@@ -1,6 +1,8 @@
 var data = [];
 var markerContent = [];
 var fileAdd ;
+var currPosMarker ;
+var mapadd;
 
 if(navigator.onLine==false)
 {
@@ -46,8 +48,16 @@ for (var i=0 ; i< arr.length-1 ; i++)
 
 	var mapObj = document.getElementById("mapviewer");
 	var latlng = new google.maps.LatLng(data[0].lat, data[0].lng);
-	var mapOpt = {center:latlng, zoom:10};
-	var mapadd = new google.maps.Map( mapObj, mapOpt);
+	var mapOpt = {center:latlng, zoom:10, mapTypeControl:false};
+	mapadd = new google.maps.Map( mapObj, mapOpt);
+
+	if (data[0].custtype=="Current User") 
+		{
+			mapadd.setCenter ( new google.maps.LatLng(data[0].lat, data[0].lng));
+			mapadd.setZoom(18);
+		}
+
+	//var GeoMarker = new GeolocationMarker(mapadd);  // Added as imported code from another source
 	var filePath = fileAdd;
 	var iconImg=[];
 	
@@ -83,11 +93,15 @@ for (var i=0 ; i< arr.length-1 ; i++)
 	}
 	else if(data[i].custtype=="Successful Delivery")
 	{
-		iconImg[i] = filePath + "success.png";
+		iconImg[i] = filePath + "Success.png";
 	}
 	else if(data[i].custtype=="Estimate")
 	{
 		iconImg[i] = filePath + "estimate.png";
+	}
+	else if(data[i].custtype=="Current User")
+	{
+		iconImg[i] = filePath + "gpsfixedindicator.png";
 	}
 	else
 	{
@@ -143,6 +157,9 @@ for (var i=0 ; i< arr.length-1 ; i++)
 
 	}
 	
+	//geoCodeLocation();
+	//setTimeout(geoCodeLocation, 5000);
+	
 
 }
 function navigateCustomer(custid)
@@ -156,4 +173,77 @@ function navigateCustomer(custid)
 function NavCust(id)
 {
 	setTimeout(navigateCustomer(id), 2000);
+}
+
+function geoCodeLocation()
+{
+	if(navigator.geolocation)
+	{
+		alert("Geolocation supported");
+		function geo_success(position) 
+		{
+			alert("Getting Current Position");
+
+  			var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+  			alert("Position Obtained");
+
+  			if (!currPosMarker) 
+				{
+					currPosMarker = new google.maps.Marker(
+					{
+						position:pos,
+						map:mapadd,
+						icon:'https://cdn.rawgit.com/atismohanty/atis-pc/fc321323/gpsfixedindicator.png',
+						animation: google.maps.Animation.DROP
+					});
+				}
+			else
+			{
+				currPosMarker.setPosition = pos;
+			}
+			mapadd.setCenter(pos);
+		}
+
+		function geo_error(err) {
+		  alert("Sorry, no position available." + err.code + "  " + err.message);
+		}
+
+		var geo_options = {
+		  enableHighAccuracy: false, 
+		  maximumAge        : 30000, 
+		  timeout           : 27000
+		};
+	alert("Getting Current Position from map");
+	navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options);
+
+	}
+	else
+	{
+		alert("Geocodoing is not enabled for this browser. Please try a different browser.");
+	}
+}
+function showPosition(position)
+{
+	
+	var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	/*
+	if (!currPosMarker) 
+		{
+			currPosMarker = new google.maps.Marker(
+			{
+				position:pos,
+				map:mapadd,
+				icon:'gpsfixedindicator.png',
+				animation: google.maps.Animation.DROP
+			});
+		}
+		else
+		{
+			currPosMarker.setPosition = pos;
+		}
+	
+	mapadd.setCenter(pos);
+	*/
+	console.log(pos);
 }
