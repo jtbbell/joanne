@@ -143,7 +143,7 @@ for (var i=0 ; i< arr.length-1 ; i++)
 								"City: "+ data[i].custCity + "</br>" +
 								"State: "+ data[i].custState + "</br>" +
 								"Contact: "+ data[i].storeContact + "</br>" +
-								"Note: "+ data[i].flag + "</br>" +
+								"Type: "+ data[i].custtype + "</br>" +
 								"</p>" +
 			"<button style='width:160px;height:40px; text-align:center;font-size:16px' onclick='NavCust(" + data[i].custid + ")'> Navigate to Details </button>" +
 								"</div>"
