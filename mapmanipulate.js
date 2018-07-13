@@ -128,7 +128,7 @@ function initMap(info)
 	google.maps.event.addListener(mapadd,"click", function (event) 
 	{
 	    
-	}
+	});
 
 }
 
