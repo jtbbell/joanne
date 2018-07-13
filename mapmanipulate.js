@@ -156,6 +156,7 @@ function initMap(info)
 	    			}
 
 	    			fmData = addressFull + '~' + state + '~' + country + '~' + postcode + '~' + placeId + '~' + lat+ '~' + lng;
+				setTimeout(createNewCustomer, 3000);
 			}
 		}
 	    });
