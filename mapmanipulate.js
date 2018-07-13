@@ -156,16 +156,8 @@ function initMap(info)
 	    			}
 
 	    			fmData = addressFull + '~' + state + '~' + country + '~' + postcode + '~' + placeId + '~' + lat+ '~' + lng;
-			else
-	    		{
-	    			
-	    		}
-	    	}
-	    	else
-	    	{
-	    		
-	    	}
-			
+			}
+		}
 		
 	    });
 	    fmData='';
