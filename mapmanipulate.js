@@ -158,12 +158,12 @@ function initMap(info)
 	    			fmData = addressFull + '~' + state + '~' + country + '~' + postcode + '~' + placeId + '~' + lat+ '~' + lng;
 			else
 	    		{
-	    			console.log("no result found");
+	    			
 	    		}
 	    	}
 	    	else
 	    	{
-	    		console.log("Geocoding failed :" + status);
+	    		
 	    	}
 			
 		
