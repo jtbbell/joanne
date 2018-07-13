@@ -167,10 +167,7 @@ function initMap(info)
 	    	else
 	    	{
 	    		console.log("Geocoding failed :" + status);
-	    	}
-	    	return;
-
-	    	});
+	    	} 	});
 	    fmData='';
 
 		});
