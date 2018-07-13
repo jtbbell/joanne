@@ -124,60 +124,6 @@ function initMap(info)
 				}
 			}
 		});
-
-	google.maps.event.addListener(mapadd,"click", function (event) 
-	{
-		//event.preventDefault()
-
-	    var lat = event.latLng.lat().toFixed(6);
-	    var lng = event.latLng.lng().toFixed(6);
-	    var latlng = new google.maps.LatLng(lat, lng);
-	    var geocoder  = new google.maps.Geocoder;
-	    var placeId = event.placeId;
-	    geocoder.geocode({'placeId':placeId}, function(result, status)
-	    {
-	    	if(status=='OK')
-	    	{
-	    		if(result[0] && fmData=='')
-	    		{
-	    			var addressFull = result[0].formatted_address;
-	    			for(let i=result[0].address_components.length-1 ; i >=0 ; i--)
-	    			{
-	    				if (result[0].address_components[i].types[0]=='postal_code') 
-	    				{
-	    					var postcode = result[0].address_components[i].long_name;
-	    				}
-	    				else if(result[0].address_components[i].types[0]=='country')
-	    				{
-	    					var country =  result[0].address_components[i].long_name;
-	    				}
-	    				else if(result[0].address_components[i].types[0]=='administrative_area_level_1')
-	    				{
-	    					var state = result[0].address_components[i].long_name;
-	    				}
-	    			}
-
-	    			fmData = addressFull + '~' + state + '~' + country + '~' + postcode + '~' + placeId + '~' + lat+ '~' + lng;
-	    			setTimeout(createNewCustomer, 3000);
-
-	    		}
-	    		else
-	    		{
-	    			console.log("no result found");
-	    		}
-	    	}
-	    	else
-	    	{
-	    		console.log("Geocoding failed :" + status);
-	    	}
-	    	return;
-
-	    	});
-	    fmData='';
-
-		});
-	
-
 	}
 
 }
