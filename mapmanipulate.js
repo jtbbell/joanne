@@ -138,28 +138,12 @@ function initMap(info)
 	    	{
 	    		if(result[0] && fmData=='')
 	    		{
-	    			var addressFull = result[0].formatted_address;
-	    			for(let i=result[0].address_components.length-1 ; i >=0 ; i--)
-	    			{
-	    				if (result[0].address_components[i].types[0]=='postal_code') 
-	    				{
-	    					var postcode = result[0].address_components[i].long_name;
-	    				}
-	    				else if(result[0].address_components[i].types[0]=='country')
-	    				{
-	    					var country =  result[0].address_components[i].long_name;
-	    				}
-	    				else if(result[0].address_components[i].types[0]=='administrative_area_level_1')
-	    				{
-	    					var state = result[0].address_components[i].long_name;
-	    				}
-	    			}
+	    			
 			}
 		}
 		
 	    });
-	    fmData='';
-	});
+	 });
 
 }
 
