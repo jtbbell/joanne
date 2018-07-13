@@ -127,11 +127,7 @@ function initMap(info)
 	}
 	google.maps.event.addListener(mapadd,"click", function (event) 
 	{
-	    var lat = event.latLng.lat().toFixed(6);
-	    var lng = event.latLng.lng().toFixed(6);
-	    var latlng = new google.maps.LatLng(lat, lng);
-	    var geocoder  = new google.maps.Geocoder;
-	    var placeId = event.placeId;
+	    
 	}
 
 }
