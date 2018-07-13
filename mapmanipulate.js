@@ -156,9 +156,17 @@ function initMap(info)
 	    			}
 
 	    			fmData = addressFull + '~' + state + '~' + country + '~' + postcode + '~' + placeId + '~' + lat+ '~' + lng;
-				setTimeout(createNewCustomer, 3000);
-			}
-		}
+			else
+	    		{
+	    			console.log("no result found");
+	    		}
+	    	}
+	    	else
+	    	{
+	    		console.log("Geocoding failed :" + status);
+	    	}
+			
+		
 	    });
 	    fmData='';
 	});
