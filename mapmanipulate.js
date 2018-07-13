@@ -1,6 +1,7 @@
 var data = [];
 var markerContent = [];
 var fileAdd ;
+var fmData;
 
 if(navigator.onLine==false)
 {
@@ -13,32 +14,32 @@ if(navigator.onLine==false)
 function initMap(info)
 {
 //alert("Script Loaded");
-var text = info;
-if(text=="undefined" || text=="NULL")
-	{
-		document.getElementById("mapviewer").innerHTML = "There is no place to show in the map";
-		alert
-		//return;
-	}
-var arr = text.split('=');
-fileAdd = arr[0];
-for (var i=0 ; i< arr.length-1 ; i++)
-	{
-		var arr2 = arr[i+1].split('~');
-		data[i] =   {
-						"custid": arr2[0],
-						"custname": arr2[1],
-						"lng": arr2[2],
-						"lat": arr2[3],
-						"custtype":arr2[4],
-						"custAdd":arr2[5],
-						"custCity":arr2[6],
-						"custState":arr2[7],
-						"storeContact":arr2[8],
-						"flag":arr2[9],
-					} 
-	}
-	//alert(data);
+	var text = info;
+	if(text=="undefined" || text=="NULL")
+		{
+			document.getElementById("mapviewer").innerHTML = "There is no place to show in the map";
+			alert
+			//return;
+		}
+	var arr = text.split('=');
+	fileAdd = arr[0];
+	for (var i=0 ; i< arr.length-1 ; i++)
+		{
+			var arr2 = arr[i+1].split('~');
+			data[i] =   {
+							"custid": arr2[0],
+							"custname": arr2[1],
+							"lng": arr2[2],
+							"lat": arr2[3],
+							"custtype":arr2[4],
+							"custAdd":arr2[5],
+							"custCity":arr2[6],
+							"custState":arr2[7],
+							"storeContact":arr2[8],
+							"flag":arr2[9],
+						} 
+		}
+
 	for(var i=0 ; i< data.length;i++)
 	{
 		markerContent[i] = data[i].custname;
@@ -92,9 +93,6 @@ for (var i=0 ; i< arr.length-1 ; i++)
 		icon:iconImg[i],
 		animation: google.maps.Animation.DROP
 		});
-	
-
-	//marker[i].addListener('dblclick', );
 
 	marker[i].addListener('click', function(event)
 		{
@@ -127,18 +125,80 @@ for (var i=0 ; i< arr.length-1 ; i++)
 			}
 		});
 
+	google.maps.event.addListener(mapadd,"click", function (event) 
+	{
+		//event.preventDefault()
+
+	    var lat = event.latLng.lat().toFixed(6);
+	    var lng = event.latLng.lng().toFixed(6);
+	    var latlng = new google.maps.LatLng(lat, lng);
+	    var geocoder  = new google.maps.Geocoder;
+	    var placeId = event.placeId;
+	    geocoder.geocode({'placeId':placeId}, function(result, status)
+	    {
+	    	if(status=='OK')
+	    	{
+	    		if(result[0] && fmData=='')
+	    		{
+	    			var addressFull = result[0].formatted_address;
+	    			for(let i=result[0].address_components.length-1 ; i >=0 ; i--)
+	    			{
+	    				if (result[0].address_components[i].types[0]=='postal_code') 
+	    				{
+	    					var postcode = result[0].address_components[i].long_name;
+	    				}
+	    				else if(result[0].address_components[i].types[0]=='country')
+	    				{
+	    					var country =  result[0].address_components[i].long_name;
+	    				}
+	    				else if(result[0].address_components[i].types[0]=='administrative_area_level_1')
+	    				{
+	    					var state = result[0].address_components[i].long_name;
+	    				}
+	    			}
+
+	    			fmData = addressFull + '~' + state + '~' + country + '~' + postcode + '~' + placeId;
+	    			setTimeout(createNewCustomer, 5000);
+
+	    		}
+	    		else
+	    		{
+	    			console.log("no result found");
+	    		}
+	    	}
+	    	else
+	    	{
+	    		console.log("Geocoding failed :" + status);
+	    	}
+	    	return;
+
+	    	});
+	    fmData='';
+
+		});
 	
 
 	}
-	
 
 }
+
+
+// Functions for calling the Filemaker scripts
 function navigateCustomer(custid)
 {
 	var scriptFM = "fmp://$/GasketApp.fmp12?script=NavigateCustomer_TriggerJS&param="+custid;
 	//var scriptFM = "fmp://XMLUser:XMLUser@"+ip+"/GasketApp.fmp12?script=NavigateCustomer_TriggerJS&param="+custid;
 	//alert(scriptFM);
 	window.location.href= scriptFM;
+}
+
+function createNewCustomer()
+{
+	var userOpt = confirm("Create a new customer for the selected location?");
+	if (userOpt == true) 
+	{
+		var scriptFM = "fmp://$/GasketApp.fmp12?script=CreateNewCustomerWeb_TriggerJS&param="+fmData;
+	}
 }
 
 function NavCust(id)
