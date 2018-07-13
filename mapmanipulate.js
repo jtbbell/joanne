@@ -157,7 +157,7 @@ function initMap(info)
 	    				}
 	    			}
 
-	    			fmData = addressFull + '~' + state + '~' + country + '~' + postcode + '~' + placeId;
+	    			fmData = addressFull + '~' + state + '~' + country + '~' + postcode + '~' + placeId + '~' + lat+ '~' + lng;
 	    			setTimeout(createNewCustomer, 5000);
 
 	    		}
@@ -194,10 +194,11 @@ function navigateCustomer(custid)
 
 function createNewCustomer()
 {
-	var userOpt = confirm("Create a new customer for the selected location?");
+	var userOpt = confirm("Create a new customer for the selected location?" + fmData);
 	if (userOpt == true) 
 	{
 		var scriptFM = "fmp://$/GasketApp.fmp12?script=CreateNewCustomerWeb_TriggerJS&param="+fmData;
+		window.location.href= scriptFM;
 	}
 }
 
