@@ -138,7 +138,11 @@ function initMap(info)
 	    	{
 	    		if(result[0] && fmData=='')
 	    		{
-	    			
+	    			var addressFull = result[0].formatted_address;
+	    			for(let i=result[0].address_components.length-1 ; i >=0 ; i--)
+	    			{
+	    				
+	    			}
 			}
 		}
 		
