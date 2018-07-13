@@ -136,7 +136,7 @@ function initMap(info)
 	    {
 		if(status=='OK')
 	    	{
-	    		if(result[0] && fmData=='')
+	    		if(result[0])
 	    		{
 	    			var addressFull = result[0].formatted_address;
 	    			for(var i=result[0].address_components.length-1 ; i >=0 ; i--)
