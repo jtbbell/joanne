@@ -114,23 +114,7 @@ function initMap(info)
 	"<p style='font-size:16px; border:1px solid #3F691E ; margin: 4px;padding: 4px;border-radius: 4px'>"+
 	"<I><b>" + markerContent[i] + "</I></b></br>" + data[i].custAdd + "</br>"+	data[i].custCity +"</br>"+ data[i].custState + "</br>" + data[i].storeContact + "</br>" + 
 	"<button style='position:relative; left:10px;width:160px;height:25px; text-align:center;font-size:14px;margin:auto; background-color: #3F691E; color:white; font-weight: 300;border-radius: 4px; padding: 4px' onclick='NavCust(" + data[i].custid + ")'>GO TO CUSTOMER</button></p>"+
-	"<p style='font-size: 14px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'> MAP STATUS</p>"+
-	"<p style='font-size: 12px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'>(REP, date last updated)</p>"+
-	"<ul style='list-style-type: none;display: flex;padding: 2px 5px;margin:2px 0px 0px 0px'>"+
-
-		"<li style='border:.5px solid #3F691E; width: 38px;height:35px;border-radius: 2px;padding: 2px; margin: 0px 2px'>"+
-			"<img src='money-bag.svg' style='width: 30px;height: 30px; padding: 2px 4px'></img>"+
-		"</li>"+
-		"<li style='border:.5px solid #3F691E; width: 38px;height:35px;border-radius: 2px;padding: 2px; margin: 0px 2px'>"+
-			"<img src='tag-black.svg' style='width: 30px;height: 30px; padding: 2px 4px'></img>"+
-		"</li>"+
-		"<li style='border:.5px solid #3F691E; width: 38px;height:35px;border-radius: 2px;padding: 2px; margin: 0px 2px'>"+
-			"<img src='note-pencil.svg' style='width: 30px;height: 30px; padding: 2px 4px'></img>"+
-		"</li>"+
-		"<li style='border:.5px solid #3F691E; width: 38px;height:35px;border-radius: 2px;padding: 2px; margin: 0px 2px'>"+
-			"<img src='alarm-icon.svg' style='width: 30px;height: 30px; padding: 2px 4px'></img>"+
-		"</li>"+
-		"</div>"
+	
 	});
 
 infowindow[i].open(mapadd, marker[i]);
