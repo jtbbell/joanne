@@ -109,8 +109,7 @@ function initMap(info)
 						}
 						infowindow[i] = new google.maps.InfoWindow
 							({
-							content:
-	"<div style='width:200px;height:220px; border:1px solid #3F691E; border-radius: 2px'>"
+							content: "<div style='width:200px;height:220px; border:1px solid #3F691E; border-radius: 2px'>"
 	});
 
 infowindow[i].open(mapadd, marker[i]);
