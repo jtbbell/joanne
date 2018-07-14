@@ -119,16 +119,16 @@ function initMap(info)
 	"<ul style='list-style-type: none;display: flex;padding: 2px 5px;margin:2px 0px 0px 0px'>"+
 
 		"<li style='border:.5px solid #3F691E; width: 38px;height:35px;border-radius: 2px;padding: 2px; margin: 0px 2px'>"+
-			"<img src='money-bag.svg' style='width: 30px;height: 30px; padding: 2px 4px'></img>"+
+			"<img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/money-bag.svg' style='width: 30px;height: 30px; padding: 2px 4px'></img>"+
 		"</li>"+
 		"<li style='border:.5px solid #3F691E; width: 38px;height:35px;border-radius: 2px;padding: 2px; margin: 0px 2px'>"+
-			"<img src='tag-black.svg' style='width: 30px;height: 30px; padding: 2px 4px'></img>"+
+			"<img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/tag-black.svg' style='width: 30px;height: 30px; padding: 2px 4px'></img>"+
 		"</li>"+
 		"<li style='border:.5px solid #3F691E; width: 38px;height:35px;border-radius: 2px;padding: 2px; margin: 0px 2px'>"+
-			"<img src='note-pencil.svg' style='width: 30px;height: 30px; padding: 2px 4px'></img>"+
+			"<img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/note-pencil.svg' style='width: 30px;height: 30px; padding: 2px 4px'></img>"+
 		"</li>"+
 		"<li style='border:.5px solid #3F691E; width: 38px;height:35px;border-radius: 2px;padding: 2px; margin: 0px 2px'>"+
-			"<img src='alarm-icon.svg' style='width: 30px;height: 30px; padding: 2px 4px'></img>"+
+			"<img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/alarm-icon.svg' style='width: 30px;height: 30px; padding: 2px 4px'></img>"+
 		"</li>"+
 		"</div>"
 	});
