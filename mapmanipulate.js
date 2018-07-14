@@ -109,8 +109,17 @@ function initMap(info)
 						}
 						infowindow[i] = new google.maps.InfoWindow
 							({
-							content: "<div style='width:200px;height:220px; border:1px solid #3F691E; border-radius: 2px'>"
-	});
+							content: "<div style='width:240px;height:240px; border:none'>"+
+									"<p style='font-size:16px'><I><b>Company: "+ markerContent[i] + "</I></b></br>" +
+									"Address: "+ data[i].custAdd + "</br>" +
+									"City: "+ data[i].custCity + "</br>" +
+									"State: "+ data[i].custState + "</br>" +
+									"Contact: "+ data[i].storeContact + "</br>" +
+									"Note: "+ data[i].flag + "</br>" +
+									"</p>" +
+				"<button style='width:160px;height:40px; text-align:center;font-size:16px' onclick='NavCust(" + data[i].custid + ")'> Navigate to Details </button>" +
+									"</div>"
+						});
 
 infowindow[i].open(mapadd, marker[i]);
 					}
