@@ -110,11 +110,7 @@ function initMap(info)
 						infowindow[i] = new google.maps.InfoWindow
 							({
 							content:
-	"<div style='width:200px;height:220px; border:1px solid #3F691E; border-radius: 2px'>"+
-	"<p style='font-size:16px; border:1px solid #3F691E ; margin: 4px;padding: 4px;border-radius: 4px'>"+
-	"<I><b>" + markerContent[i] + "</I></b></br>" + data[i].custAdd + "</br>"+	data[i].custCity +"</br>"+ data[i].custState + "</br>" + data[i].storeContact + "</br>" + 
-	"<button style='position:relative; left:10px;width:160px;height:25px; text-align:center;font-size:14px;margin:auto; background-color: #3F691E; color:white; font-weight: 300;border-radius: 4px; padding: 4px' onclick='NavCust(" + data[i].custid + ")'>GO TO CUSTOMER</button></p>"+
-	
+	"<div style='width:200px;height:220px; border:1px solid #3F691E; border-radius: 2px'>"
 	});
 
 infowindow[i].open(mapadd, marker[i]);
