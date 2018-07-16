@@ -30,8 +30,8 @@ function initMap(info,paramlat,paramlng,paramzoom)
 			data[i] =   {
 							"custid": arr2[0],
 							"custname": arr2[1],
-							"lng": arr2[2],
-							"lat": arr2[3],
+							"lng": arr2[3],
+							"lat": arr2[2],
 							"custtype":arr2[4],
 							"custAdd":arr2[5],
 							"custCity":arr2[6],
