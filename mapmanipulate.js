@@ -50,7 +50,7 @@ function initMap(info,paramlat,paramlng,paramzoom)
 	var latlng = new google.maps.LatLng(paramlat||data[0].lat, paramlng||data[0].lng);
 	var mapOpt = {center:latlng, zoom:paramzoom||10};
 	mapadd = new google.maps.Map( mapObj, mapOpt);
-	mapadd.setCenter(new google.maps.LatLng(paramlat,paramlng));
+	mapadd.setCenter(latlng);
 	var filePath = fileAdd;
 	var iconImg=[];
 	
