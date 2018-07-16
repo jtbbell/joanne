@@ -2,6 +2,7 @@ var data = [];
 var markerContent = [];
 var fileAdd ;
 var fmData;
+var mapadd;
 
 if(navigator.onLine==false)
 {
@@ -11,7 +12,7 @@ if(navigator.onLine==false)
 }
 
 
-function initMap(info)
+function initMap(info,paramlat,paramlng,paramzoom)
 {
 //alert("Script Loaded");
 	var text = info;
@@ -46,9 +47,10 @@ function initMap(info)
 	}
 
 	var mapObj = document.getElementById("mapviewer");
-	var latlng = new google.maps.LatLng(data[0].lat, data[0].lng);
-	var mapOpt = {center:latlng, zoom:10};
-	var mapadd = new google.maps.Map( mapObj, mapOpt);
+	var latlng = new google.maps.LatLng(paramlat||data[0].lat, paramlng||data[0].lng);
+	var mapOpt = {center:latlng, zoom:paramzoom||10};
+	mapadd = new google.maps.Map( mapObj, mapOpt);
+	mapadd.setCenter(new google.maps.LatLng(paramlat,paramlng));
 	var filePath = fileAdd;
 	var iconImg=[];
 	
@@ -101,7 +103,7 @@ function initMap(info)
 
 			for(var i = 0 ; i< data.length ; i++)
 			{
-				if (latMarker==parseFloat(data[i].lat).toFixed(6) && lngMarker==parseFloat(data[i].lng).toFixed(6)) 
+				if (latMarker==parseFloat(data[i].lat).toFixed(6)&& lngMarker==parseFloat(data[i].lng).toFixed(6)) 
 				{
 					if(infowindow[i])
 					{
@@ -109,7 +111,7 @@ function initMap(info)
 					}
 					infowindow[i] = new google.maps.InfoWindow
 						({
-						content:"<div style='width:240px;height:230px; border:1px solid #3F691E; border-radius: 2px'><p style='font-size:16px; border:1px solid #3F691E ; margin: 4px;padding: 4px;border-radius: 4px;'> <I><b>" + markerContent[i] + "</I></b> </br>" + data[i].custAdd + "</br>"+ data[i].custCity +"</br>"+ data[i].custState + "</br>" + data[i].storeContact + "</br> <button style='position:relative; left:10px;width:160px;height:25px; text-align:center;font-size:14px;margin:auto; background-color: #3F691E; color:white; font-weight: 300;border-radius: 4px; padding: 4px' onclick='NavCust(" + data[i].custid + ")'>GO TO CUSTOMER </button></p><p style='font-size: 14px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'> MAP STATUS</p><p style='font-size: 12px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'>(REP, date last updated)</p><div style='padding: 5px 5px;margin:0px;width: 200px;height: 45px;display: block;left: 2px;position: relative;'><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/money-bag.svg' style='width: 30px;height: 30px; padding: 1px 3px'></img></div><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/tag-black.svg' style='width: 30px;height: 30px; padding: 1px 3px'></img></div><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/note-pencil.svg' style='width: 30px;height: 30px; padding: 1px 3px'></img></div><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/alarm-icon.svg' style='width: 30px;height: 30px; padding: 1px 3px'></img></div></div></div>"});
+						content:"<div style='width:180px;height:220px; border:1px solid #3F691E; border-radius: 2px'><p style='font-size:16px; border:1px solid #3F691E ; margin: 4px;padding: 4px;border-radius: 4px;'> <I><b>" + markerContent[i] + "</I></b> </br>" + data[i].custAdd + "</br>"+ data[i].custCity +"</br>"+ data[i].custState + "</br>" + data[i].storeContact + "</br> <button style='position:relative; left:10px;width:160px;height:25px; text-align:center;font-size:14px;margin:auto; background-color: #3F691E; color:white; font-weight: 300;border-radius: 4px; padding: 4px' onclick='NavCust(" + data[i].custid + ")'>GO TO CUSTOMER </button></p><p style='font-size: 14px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'> MAP STATUS</p><p style='font-size: 12px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'>(REP, date last updated)</p><div style='padding: 5px 5px;margin:0px;width: 180px;height: 45px;display: block;left: 2px;position: relative;'><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/money-bag.svg' style='width: 30px;height: 30px; padding: 1px 3px'></img></div><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/tag-black.svg' style='width: 30px;height: 30px; padding: 1px 3px'></img></div><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/note-pencil.svg' style='width: 30px;height: 30px; padding: 1px 3px'></img></div><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/alarm-icon.svg' style='width: 30px;height: 30px; padding: 1px 3px'></img></div></div></div>"});
 					infowindow[i].open(mapadd, marker[i]);
 				}
 			}
@@ -144,7 +146,7 @@ function initMap(info)
 	    					var state = result[0].address_components[i].long_name;
 	    				}
 	    			}
-				fmData = addressFull + '~' + state + '~' + country + '~' + postcode + '~' + placeId + '~' + lat+ '~' + lng;
+				fmData = addressFull + '~' + state + '~' + country + '~' + postcode + '~' + placeId + '~' + lat+ '~' + lng + '~' + mapadd.getzoom();
 	    			createNewCustomer();
 			}
 		}
@@ -166,7 +168,7 @@ function navigateCustomer(custid)
 
 function createNewCustomer()
 {
-	var userOpt = confirm("Create a new customer for the selected location?" + fmData);
+	var userOpt = confirm("Create a new customer for the selected location?");
 	if (userOpt == true) 
 	{
 		var scriptFM = "fmp://$/GasketApp.fmp12?script=CreateNewCustomerWeb_TriggerJS&param="+fmData;
