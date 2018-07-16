@@ -53,8 +53,6 @@ function initMap(info,paramlat,paramlng,paramzoom)
 	mapadd.setCenter(latlng);
 	var filePath = fileAdd;
 	var iconImg=[];
-	
-	
 	var marker=[];
 	var infowindow=[];
 	for(var i = 0 ; i < data.length; i++)
