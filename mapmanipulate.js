@@ -144,7 +144,7 @@ function initMap(info,paramlat,paramlng,paramzoom)
 	    					var state = result[0].address_components[i].long_name;
 	    				}
 	    			}
-				fmData = addressFull + '~' + state + '~' + country + '~' + postcode + '~' + placeId + '~' + lat+ '~' + lng + '~' + mapadd.getzoom();
+				fmData = addressFull + '~' + state + '~' + country + '~' + postcode + '~' + placeId + '~' + lat+ '~' + lng + '~' + mapadd.getZoom();
 	    			createNewCustomer();
 			}
 		}
