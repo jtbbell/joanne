@@ -96,12 +96,12 @@ function initMap(info)
 
 	marker[i].addListener('click', function(event)
 		{
-			var latMarker = event.latLng.lat();
-			var lngMarker = event.latLng.lng();
+			var latMarker = event.latLng.lat().toFixed(6);
+			var lngMarker = event.latLng.lng().toFixed(6);
 
 			for(var i = 0 ; i< data.length ; i++)
 			{
-				if (latMarker==data[i].lat && lngMarker==data[i].lng) 
+				if (latMarker==parseFloat(data[i].lat).toFixed(6) && lngMarker==parseFloat(data[i].lng).toFixed(6)) 
 				{
 					if(infowindow[i])
 					{
