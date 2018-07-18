@@ -183,9 +183,9 @@ function NavCust(id)
 function changeStatus(opps, custid, lat, lng)
 {
 	if (opps==1) opps="opportunity";
-	else if (opps==1) opps="tagstore";
-	else if (opps==1) opps="estimate";
-	else if (opps==1) opps="alarm";
+	else if (opps==2) opps="tagstore";
+	else if (opps==3) opps="estimate";
+	else if (opps==4) opps="alarm";
 
 	var paramfm = opps +"~"+ custid +"~"+ lat +"~"+ lng;
 	//alert(paramfm);
