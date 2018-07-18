@@ -3,7 +3,7 @@ var markerContent = [];
 var fileAdd ;
 var fmData;
 var mapadd;
-
+var oppType =["opportunity","tagstore","estimate","alarm"]
 if(navigator.onLine==false)
 {
 	document.getElementById("mapviewer").text = "System is offline. Not able to load the map.";
@@ -50,9 +50,11 @@ function initMap(info,paramlat,paramlng,paramzoom)
 	var latlng = new google.maps.LatLng(paramlat||data[0].lat, paramlng||data[0].lng);
 	var mapOpt = {center:latlng, zoom:parseInt(paramzoom)||10};
 	mapadd = new google.maps.Map( mapObj, mapOpt);
-	mapadd.setCenter(latlng);
+	mapadd.setCenter(new google.maps.LatLng(paramlat,paramlng));
 	var filePath = fileAdd;
 	var iconImg=[];
+	
+	
 	var marker=[];
 	var infowindow=[];
 	for(var i = 0 ; i < data.length; i++)
@@ -109,7 +111,7 @@ function initMap(info,paramlat,paramlng,paramzoom)
 					}
 					infowindow[i] = new google.maps.InfoWindow
 						({
-						content:"<div style='width:180px;height:220px; border:1px solid #3F691E; border-radius: 2px'><p style='font-size:16px; border:1px solid #3F691E ; margin: 4px;padding: 4px;border-radius: 4px;'> <I><b>" + markerContent[i] + "</I></b> </br>" + data[i].custAdd + "</br>"+ data[i].custCity +"</br>"+ data[i].custState + "</br>" + data[i].storeContact + "</br> <button style='position:relative; left:10px;width:160px;height:25px; text-align:center;font-size:14px;margin:auto; background-color: #3F691E; color:white; font-weight: 300;border-radius: 4px; padding: 4px' onclick='NavCust(" + data[i].custid + ")'>GO TO CUSTOMER </button></p><p style='font-size: 14px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'> MAP STATUS</p><p style='font-size: 12px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'>(REP, date last updated)</p><div style='padding: 5px 5px;margin:0px;width: 180px;height: 45px;display: block;left: 2px;position: relative;'><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/money-bag.svg' style='width: 30px;height: 30px; padding: 1px 3px'></img></div><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/tag-black.svg' style='width: 30px;height: 30px; padding: 1px 3px'></img></div><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/note-pencil.svg' style='width: 30px;height: 30px; padding: 1px 3px'></img></div><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/alarm-icon.svg' style='width: 30px;height: 30px; padding: 1px 3px'></img></div></div></div>"});
+						content:"<div id='custdetails' style='width:230px;height:230px; border:1px solid #3F691E; border-radius: 2px'><p style='font-size:16px; border:1px solid #3F691E ; margin: 4px;padding: 4px;border-radius: 4px;'> <I><b>" + markerContent[i] + "</I></b> </br>" + data[i].custAdd + "</br>"+ data[i].custCity +"</br>"+ data[i].custState + "</br>" + data[i].storeContact + "</br> <button style='position:relative; left:10px;width:160px;height:25px; text-align:center;font-size:14px;margin:auto; background-color: #3F691E; color:white; font-weight: 300;border-radius: 4px; padding: 4px' onclick='NavCust(" + data[i].custid + ")'>GO TO CUSTOMER </button></p><p style='font-size: 14px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'> MAP STATUS</p><p style='font-size: 12px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'>(REP, date last updated)</p><div style='padding: 5px 0px;width: 185px;height: 45px;display: block;margin: auto;position: relative;'><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/money-bag.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(1," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/tag-black.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(2," + data[i].custid +"," + data[i].lat + "," + data[i].lng +")'></img></div><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/note-pencil.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(2," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/alarm-icon.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(4," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div></div></div>"});
 					infowindow[i].open(mapadd, marker[i]);
 				}
 			}
@@ -177,4 +179,16 @@ function createNewCustomer()
 function NavCust(id)
 {
 	setTimeout(navigateCustomer(id), 2000);
+}
+function changeStatus(opps, custid, lat, lng)
+{
+	if (opps==1) opps="opportunity";
+	else if (opps==1) opps="tagstore";
+	else if (opps==1) opps="estimate";
+	else if (opps==1) opps="alarm";
+
+	let paramfm = opps +"~"+ custid +"~"+ lat +"~"+ lng;
+	//alert(paramfm);
+	var scriptFM = "fmp://$/GasketApp.fmp12?script=UpdateCustomer_TriggerJS&param="+paramfm;
+	window.location.href=scriptFM;
 }
