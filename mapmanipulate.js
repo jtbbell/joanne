@@ -187,7 +187,7 @@ function changeStatus(opps, custid, lat, lng)
 	else if (opps==1) opps="estimate";
 	else if (opps==1) opps="alarm";
 
-	let paramfm = opps +"~"+ custid +"~"+ lat +"~"+ lng;
+	var paramfm = opps +"~"+ custid +"~"+ lat +"~"+ lng;
 	//alert(paramfm);
 	var scriptFM = "fmp://$/GasketApp.fmp12?script=UpdateCustomer_TriggerJS&param="+paramfm;
 	window.location.href=scriptFM;
