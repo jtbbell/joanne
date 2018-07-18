@@ -80,6 +80,10 @@ function initMap(info,paramlat,paramlng,paramzoom)
 	{
 		iconImg[i] = filePath + "TagStore.png";
 	}
+	else if(data[i].custtype=="Estimate")
+	{
+		iconImg[i] = filePath + "Estimate.png";
+	}
 	else
 	{
 		iconImg[i] = filePath + "Unassigned.png";
