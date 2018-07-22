@@ -135,6 +135,7 @@ function initMap(info,paramlat,paramlng,paramzoom)
 	    		if(result[0])
 	    		{
 	    			var addressFull = result[0].formatted_address;
+	    			var address="";
 	    			for(var i=result[0].address_components.length-1 ; i >=0 ; i--)
 	    			{
 	    				if (result[0].address_components[i].types[0]=='postal_code') 
@@ -149,8 +150,32 @@ function initMap(info,paramlat,paramlng,paramzoom)
 	    				{
 	    					var state = result[0].address_components[i].long_name;
 	    				}
+	    				else if(result[0].address_components[i].types[0]=='locality')
+	    				{
+	    					var city = result[0].address_components[i].long_name;
+	    				}
+	    				else if(result[0].address_components[i].types[0]=='intersection')
+	    				{
+	    					var address = result[0].address_components[i].long_name + ',' + address ;
+	    				}
+	    				else if(result[0].address_components[i].types[0]=='route')
+	    				{
+	    					var address = result[0].address_components[i].long_name + ',' + address ;
+	    				}
+	    				else if(result[0].address_components[i].types[0]=='street_address')
+	    				{
+	    					var address = result[0].address_components[i].long_name + ',' + address ;
+	    				}
+	    				else if(result[0].address_components[i].types[0]=='street_number')
+	    				{
+	    					var address = result[0].address_components[i].long_name + ',' + address ;
+	    				}
+	    				else if(result[0].address_components[i].types[0]=='"postal_code_suffix"')
+	    				{
+	    					// No need to get the address level of this
+	    				}
 	    			}
-				fmData = addressFull + '~' + state + '~' + country + '~' + postcode + '~' + placeId + '~' + lat+ '~' + lng + '~' + mapadd.getZoom();
+				fmData = address + '~' + state + '~' + city + '~' + country + '~' + postcode + '~' + placeId + '~' + lat+ '~' + lng + '~' + mapadd.getZoom();
 	    			createNewCustomer();
 			}
 		}
