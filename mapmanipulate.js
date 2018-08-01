@@ -48,7 +48,7 @@ function initMap(info,paramlat,paramlng,paramzoom)
 
 	var mapObj = document.getElementById("mapviewer");
 	var latlng = new google.maps.LatLng(paramlat||data[0].lat, paramlng||data[0].lng);
-	var mapOpt = {center:latlng, zoom:parseInt(paramzoom)||10};
+	var mapOpt = {center:latlng, zoom:parseInt(paramzoom)||10, disableDefaultUI: true};
 	mapadd = new google.maps.Map( mapObj, mapOpt);
 	mapadd.setCenter(latlng);
 	var filePath = fileAdd;
