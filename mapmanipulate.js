@@ -48,7 +48,16 @@ function initMap(info,paramlat,paramlng,paramzoom)
 
 	var mapObj = document.getElementById("mapviewer");
 	var latlng = new google.maps.LatLng(paramlat||data[0].lat, paramlng||data[0].lng);
-	var mapOpt = {center:latlng, zoom:parseInt(paramzoom)||10, mapTypeControl: false};
+	var mapOpt = {
+		center:latlng,
+		 zoom:parseInt(paramzoom)||10,
+		 mapTypeControl: false,
+		 draggable: true,
+		 scaleControl: false,
+		 scrollwheel: false,
+		 navigationControl: false,
+		 streetViewControl: false,
+		 }; //zoomControl: false
 	mapadd = new google.maps.Map( mapObj, mapOpt);
 	mapadd.setCenter(latlng);
 	var filePath = fileAdd;
@@ -102,6 +111,7 @@ function initMap(info,paramlat,paramlng,paramzoom)
 
 	marker[i].addListener('click', function(event)
 		{
+
 			var latMarker = event.latLng.lat().toFixed(6);
 			var lngMarker = event.latLng.lng().toFixed(6);
 
@@ -113,28 +123,59 @@ function initMap(info,paramlat,paramlng,paramzoom)
 					{
 						infowindow[i].close();
 					}
-					if (data[i].custtype=='Opportunity') 
-					{ 
-						var notestyle = 'transparent';
-						var tagstyle = 'transparent';
+					var notestyle = 'transparent';
+					var tagstyle = 'transparent';
+					var oppstyle = 'transparent';
+					var unassignedstyle = 'transparent';
+					var techstyle = 'transparent';
+
+					switch (data[i].custtype)
+					{
+						case 'Opportunity' :
 						var oppstyle = 'lightblue';
-					}
-					else if (data[i].custtype=='Tag Store')
-					{
-						var notestyle = 'transparent';
+						break;
+
+						case 'Tag Store':
 						var tagstyle = 'lightblue';
-						var oppstyle = 'transparent';
-					}
-					else if (data[i].custtype=='Estimate')
-					{
+						break;
+
+						case 'Estimate':
 						var notestyle = 'lightblue';
-						var tagstyle = 'transparent';
-						var oppstyle = 'transparent';
+						break;
+
+						case 'Tech Support':
+						var techstyle = 'lightblue';
+						break;
+
+						case 'Unassigned':
+						var unassignedstyle  = 'lightblue';
+						break;
 					}
+
+
+					// if (data[i].custtype=='Opportunity') 
+					// { 
+					// 	var notestyle = 'transparent';
+					// 	var tagstyle = 'transparent';
+					// 	var oppstyle = 'lightblue';
+					// }
+					// else if (data[i].custtype=='Tag Store')
+					// {
+					// 	var notestyle = 'transparent';
+					// 	var tagstyle = 'lightblue';
+					// 	var oppstyle = 'transparent';
+					// }
+					// else if (data[i].custtype=='Estimate')
+					// {
+					// 	var notestyle = 'lightblue';
+					// 	var tagstyle = 'transparent';
+					// 	var oppstyle = 'transparent';
+					// }
+					
 
 					infowindow[i] = new google.maps.InfoWindow
 						({
-						content:"<div id='custdetails' style='width:230px;height:230px; border:1px solid #3F691E; border-radius: 2px'><p style='font-size:16px; border:1px solid #3F691E ; margin: 4px;padding: 4px;border-radius: 4px;'> <I><b>" + markerContent[i] + "</I></b> </br>" + data[i].custAdd + "</br>"+ data[i].custCity +"</br>"+ data[i].custState + "</br>" + data[i].storeContact + "</br> <button style='position:relative; left:10px;width:160px;height:25px; text-align:center;font-size:14px;margin:auto; background-color: #3F691E; color:white; font-weight: 300;border-radius: 4px; padding: 4px' onclick='NavCust(" + data[i].custid + ")'>GO TO CUSTOMER </button></p><p style='font-size: 14px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'> MAP STATUS</p><p style='font-size: 12px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'></p><div style='padding: 5px 0px;width: 185px;height: 45px;display: block;margin: auto;position: relative;'><div id='"+ data[i].custid +"moneybag' style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block; background-color:"+oppstyle+"'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/money-bag.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(1," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"tagblack' style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+tagstyle+"'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/tag-black.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(2," + data[i].custid +"," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"notepencil' style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+notestyle+"'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/note-pencil.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(3," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"alarm' style='border:.5px solid #3F691E;width: 38px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.rawgit.com/atismohanty/joanne/4e46edc7/alarm-icon.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(4," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div></div></div>"});
+						content:"<div id='custdetails' style='width:250px;height:230px; border:1px solid #3F691E; border-radius: 2px'><p style='font-size:16px; border:1px solid #3F691E ; margin: 4px;padding: 4px;border-radius: 4px;'> <I><b>" + markerContent[i] + "</I></b> </br>" + data[i].custAdd + "</br>"+ data[i].custCity +"</br>"+ data[i].custState + "</br>" + data[i].storeContact + "</br> <button style='position:relative; left:10px;width:160px;height:25px; text-align:center;font-size:14px;margin:auto; background-color: #3F691E; color:white; font-weight: 300;border-radius: 4px; padding: 4px' onclick='NavCust(" + data[i].custid + ")'>GO TO CUSTOMER </button></p><p style='font-size: 14px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'> MAP STATUS</p><p style='font-size: 12px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'></p><div style='padding: 5px 0px;width: 250px;height: 45px;display: block;margin: auto;position: relative;'><div id='"+ data[i].custid +"unassigned' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+unassignedstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/placeholder.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(6," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"moneybag' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block; background-color:"+oppstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/money-bag.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(1," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"tagblack' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+tagstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/tag-black.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(2," + data[i].custid +"," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"notepencil' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+notestyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/note-pencil.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(3," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"servicerepair' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block; background-color:"+techstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/repairing-service.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(5," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"alarm' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/alarm-icon.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(4," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div></div></div>"});
 					infowindow[i].open(mapadd, marker[i]);
 				}
 			}
@@ -202,8 +243,73 @@ function initMap(info,paramlat,paramlng,paramzoom)
 	    });
 	 });
 
+	 searchLocationAlt();
+
 }
 
+function searchLocation()
+{
+
+	var srchVal = document.getElementById("inpSearch").value;
+	if(srchVal.length> 3)
+	{
+		var service =  new google.maps.places.PlacesService(mapadd);
+		var request = {
+			query: srchVal,
+			fields: [ 'formatted_address', 'geometry', 'icon', 'id', 'name', 'permanently_closed', 'photos', 'place_id', 'plus_code', 'scope', 'types'],
+		  };
+		service.findPlaceFromQuery(
+			request , function(results, status)
+		{
+			if (status === google.maps.places.PlacesServiceStatus.OK) {
+				for (var i = 0; i < results.length; i++) {
+					createMarker(results[i]);
+					
+				}
+			  }
+		});
+	}
+}
+
+
+function searchLocationAlt()
+{
+	var markersSearch = [];
+	srchInput = document.getElementById("inpSearch");
+	//var srchVal = srchInput.value;
+	//var srchVal  ='McDonalds';
+	var searchBox = new google.maps.places.SearchBox(srchInput);
+	mapadd.addListener('bounds_changed', function() {
+		searchBox.setBounds(mapadd.getBounds());
+	  });
+	  searchBox.addListener('places_changed', function() {
+		var places = searchBox.getPlaces();
+		markersSearch.forEach(function(marker) {
+			marker.setMap(null);
+		});
+		markersSearch = [];
+		var bounds = new google.maps.LatLngBounds();
+		if(places)
+		{
+			places.forEach(function(place) 
+			{
+				markersSearch.push(new google.maps.Marker({
+					map: mapadd,
+					position: place.geometry.location
+				}));
+			});
+			}
+		});
+
+}
+
+function createMarker(place) {
+	var placeLoc = place.geometry.location;
+	var marker = new google.maps.Marker({
+		map: mapadd,
+		position: place.geometry.location
+	});
+}
 
 // Functions for calling the Filemaker scripts
 function navigateCustomer(custid)
@@ -216,12 +322,23 @@ function navigateCustomer(custid)
 
 function createNewCustomer()
 {
-	var userOpt = confirm("Create a new customer for the selected location?");
-	if (userOpt == true) 
+	//var userOpt = confirm("Create a new customer for the selected location?");
+	setTimeout(function()
 	{
-		var scriptFM = "fmp://$/GasketApp.fmp12?script=CreateNewCustomerWeb_TriggerJS&param="+fmData;
-		window.location.href= scriptFM;
-	}
+		var prmptbox = prompt('To create a new customer enter the name and click ok, else cancel.');
+		if(prmptbox!==null && prmptbox!=='')
+		{
+			//alert(prmptbox);
+			fmData =  fmData + '~' + prmptbox;
+			var scriptFM = "fmp://$/GasketApp.fmp12?script=CreateNewCustomerWeb_TriggerJS&param="+fmData;
+			window.location.href= scriptFM;
+		}
+		else
+		{
+			alert('Customer name not entered or process aborted. Please try again.');
+		}
+	}, 500 );
+	
 }
 
 function NavCust(id)
@@ -234,6 +351,8 @@ function changeStatus(opps, custid, lat, lng)
 	else if (opps==2) opps="tagstore";
 	else if (opps==3) opps="estimate";
 	else if (opps==4) opps="alarm";
+	else if (opps==5) opps="techsupport";
+	else if (opps==6) opps="unassigned";
 
 	var paramfm = opps +"~"+ custid +"~"+ lat +"~"+ lng;
 	//alert(paramfm);
