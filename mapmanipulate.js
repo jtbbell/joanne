@@ -93,10 +93,14 @@ function initMap(info,paramlat,paramlng,paramzoom)
 	{
 		iconImg[i] = filePath + "Estimate.png";
 	}
-	else
+	else if (data[i].custtype=="Unassigned")
 	{
 		iconImg[i] = filePath + "Unassigned.png";
 	
+	}
+	else if(data[i].custtype=="Current User")
+	{
+		iconImg[i] = filePath + "gps-fixed-indicator.svg";
 	}
 		
 		
@@ -153,29 +157,9 @@ function initMap(info,paramlat,paramlng,paramzoom)
 					}
 
 
-					// if (data[i].custtype=='Opportunity') 
-					// { 
-					// 	var notestyle = 'transparent';
-					// 	var tagstyle = 'transparent';
-					// 	var oppstyle = 'lightblue';
-					// }
-					// else if (data[i].custtype=='Tag Store')
-					// {
-					// 	var notestyle = 'transparent';
-					// 	var tagstyle = 'lightblue';
-					// 	var oppstyle = 'transparent';
-					// }
-					// else if (data[i].custtype=='Estimate')
-					// {
-					// 	var notestyle = 'lightblue';
-					// 	var tagstyle = 'transparent';
-					// 	var oppstyle = 'transparent';
-					// }
-					
-
 					infowindow[i] = new google.maps.InfoWindow
 						({
-						content:"<div id='custdetails' style='width:250px;height:230px; border:1px solid #3F691E; border-radius: 2px'><p style='font-size:16px; border:1px solid #3F691E ; margin: 4px;padding: 4px;border-radius: 4px;'> <I><b>" + markerContent[i] + "</I></b> </br>" + data[i].custAdd + "</br>"+ data[i].custCity +"</br>"+ data[i].custState + "</br>" + data[i].storeContact + "</br> <button style='position:relative; left:10px;width:160px;height:25px; text-align:center;font-size:14px;margin:auto; background-color: #3F691E; color:white; font-weight: 300;border-radius: 4px; padding: 4px' onclick='NavCust(" + data[i].custid + ")'>GO TO CUSTOMER </button></p><p style='font-size: 14px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'> MAP STATUS</p><p style='font-size: 12px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'></p><div style='padding: 5px 0px;width: 250px;height: 45px;display: block;margin: auto;position: relative;'><div id='"+ data[i].custid +"unassigned' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+unassignedstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/placeholder.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(6," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"moneybag' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block; background-color:"+oppstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/money-bag.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(1," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"tagblack' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+tagstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/tag-black.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(2," + data[i].custid +"," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"notepencil' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+notestyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/note-pencil.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(3," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"servicerepair' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block; background-color:"+techstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/repairing-service.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(5," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"alarm' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/alarm-icon.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(4," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div></div></div>"});
+						content:"<div id='custdetails' style='width:250px;height:230px; border:1px solid #3F691E; border-radius: 2px'><p style='font-size:16px; border:1px solid #3F691E ; margin: 4px;padding: 4px;border-radius: 4px;'> <I><b>" + markerContent[i] + "</I></b> </br>" + data[i].custAdd + "</br>"+ data[i].custCity +"</br>"+ data[i].custState + "</br>" + data[i].storeContact + "</br> <button style='position:relative; left:10px;width:160px;height:25px; text-align:center;font-size:14px;margin:auto; background-color: #3F691E; color:white; font-weight: 300;border-radius: 4px; padding: 4px' onclick='NavCust(" + data[i].custid + ")'>GO TO CUSTOMER </button></p><p style='font-size: 14px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'> MAP STATUS</p><p style='font-size: 12px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'></p><div style='padding: 5px 0px;width: 240px;height: 45px;display: block;margin: auto;position: relative;'><div id='"+ data[i].custid +"unassigned' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+unassignedstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/placeholder.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(6," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"moneybag' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block; background-color:"+oppstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/money-bag.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(1," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"tagblack' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+tagstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/tag-black.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(2," + data[i].custid +"," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"notepencil' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+notestyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/note-pencil.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(3," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"servicerepair' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block; background-color:"+techstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/repairing-service.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(5," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"alarm' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/alarm-icon.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(4," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div></div></div>"});
 					infowindow[i].open(mapadd, marker[i]);
 				}
 			}
