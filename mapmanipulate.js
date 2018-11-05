@@ -57,6 +57,7 @@ function initMap(info,paramlat,paramlng,paramzoom)
 		 scrollwheel: false,
 		 navigationControl: false,
 		 streetViewControl: false,
+		 zoomControl: (navigator.platform.toLowerCase().indexOf('iphone') < 0 && navigator.platform.toLowerCase().indexOf('ipad')< 0 ) ? true : false,
 		 }; //zoomControl: false
 	mapadd = new google.maps.Map( mapObj, mapOpt);
 	mapadd.setCenter(latlng);
@@ -69,21 +70,49 @@ function initMap(info,paramlat,paramlng,paramzoom)
 	for(var i = 0 ; i < data.length; i++)
 	{
 	
-	if (data[i].custtype=="Tech Support")
+	// if (data[i].custtype=="Tech Support")
+	// {
+	// 	iconImg[i] = filePath + "TechSupport.png";
+	// }
+	// else if(data[i].custtype=="Opportunity")
+	// {
+	// 	iconImg[i] = filePath + "Opportunity.png";
+	// }
+	// else if(data[i].custtype=="Installation")
+	// {
+	// 	iconImg[i] = filePath + "Installation.png";
+	// }
+	// else if(data[i].custtype=="Schedule Review")
+	// {
+	// 	iconImg[i] = filePath + "ScheduleReview.png";
+	// }
+	// else if(data[i].custtype=="Tag Store")
+	// {
+	// 	iconImg[i] = filePath + "TagStore.png";
+	// }
+	// else if(data[i].custtype=="Estimate")
+	// {
+	// 	iconImg[i] = filePath + "Estimate.png";
+	// }
+	// else if (data[i].custtype=="Unassigned")
+	// {
+	// 	iconImg[i] = filePath + "Unassigned.png";
+	
+	// }
+	// else if(data[i].custtype=="Current User")
+	// {
+	// 	iconImg[i] = filePath + "gps-fixed-indicator.svg";
+	// }
+
+
+	if (data[i].custtype=="Unassigned")
 	{
-		iconImg[i] = filePath + "TechSupport.png";
+		iconImg[i] = filePath + "Unassigned.png";
+	
 	}
 	else if(data[i].custtype=="Opportunity")
 	{
 		iconImg[i] = filePath + "Opportunity.png";
-	}
-	else if(data[i].custtype=="Installation")
-	{
-		iconImg[i] = filePath + "Installation.png";
-	}
-	else if(data[i].custtype=="Schedule Review")
-	{
-		iconImg[i] = filePath + "ScheduleReview.png";
 	}
 	else if(data[i].custtype=="Tag Store")
 	{
@@ -93,11 +122,25 @@ function initMap(info,paramlat,paramlng,paramzoom)
 	{
 		iconImg[i] = filePath + "Estimate.png";
 	}
-	else if (data[i].custtype=="Unassigned")
+	else if(data[i].custtype=="Work Order")
 	{
-		iconImg[i] = filePath + "Unassigned.png";
-	
+		iconImg[i] = filePath + "WorkOrder.png";
 	}
+	else if(data[i].custtype=="Installation")
+	{
+		iconImg[i] = filePath + "Installation.png";
+	}
+	else if(data[i].custtype=="Successful Delivery")
+	{
+		iconImg[i] = filePath + "Delivery.png";
+	}
+	else if(data[i].custtype=="No Activity")
+	{
+		iconImg[i] = filePath + "Noactivity.png";
+	}
+	
+	
+
 	else if(data[i].custtype=="Current User")
 	{
 		iconImg[i] = filePath + "gps-fixed-indicator.svg";
@@ -127,39 +170,56 @@ function initMap(info,paramlat,paramlng,paramzoom)
 					{
 						infowindow[i].close();
 					}
-					var notestyle = 'transparent';
-					var tagstyle = 'transparent';
-					var oppstyle = 'transparent';
-					var unassignedstyle = 'transparent';
-					var techstyle = 'transparent';
+
+					var unassstyle = 'background:transparent; border:solid 2px #666666';
+					var oppstyle = 'background:transparent; border:solid 2px #009833';
+					var tagstyle = 'background:transparent; border:solid 2px #FF9833';
+					var eststyle = 'background:transparent; border:solid 2px #722CFD';
+					var wostyle = 'background:transparent; border:solid 2px #FF0000';
+					var instlstyle = 'background:transparent; border:solid 2px #00BAFB';
+					var succstyle = 'background:transparent; border:solid 2px #0000FF';
+					var noactstyle = 'background:transparent; border:solid 2px #FFFF33';
 
 					switch (data[i].custtype)
 					{
+						case 'Unassigned':
+						var unassstyle  = 'background:#666666; border:solid 2px white' ;
+						break;
+
 						case 'Opportunity' :
-						var oppstyle = 'lightblue';
+						var oppstyle = 'background:#009833; border:solid 2px white';
 						break;
 
 						case 'Tag Store':
-						var tagstyle = 'lightblue';
+						var tagstyle = 'background:#FF9833; border:solid 2px white';
 						break;
 
+						
 						case 'Estimate':
-						var notestyle = 'lightblue';
+						var eststyle = 'background:#722CFD; border:solid 2px white';
 						break;
 
-						case 'Tech Support':
-						var techstyle = 'lightblue';
+						case 'Work Order':
+						var wostyle = 'background:#FF0000; border:solid 2px white';
 						break;
 
-						case 'Unassigned':
-						var unassignedstyle  = 'lightblue';
+						case 'Installation':
+						var instlstyle  = 'background:#00BAFB; border:solid 2px white';
+						break;
+
+						case '"Successful Delivery"':
+						var succstyle  = 'background:#0000FF; border:solid 2px white';
+						break;
+
+						case 'No Activity':
+						var noactstyle  = 'background:#FFFF33; border:solid 2px white';
 						break;
 					}
 
 
 					infowindow[i] = new google.maps.InfoWindow
 						({
-						content:"<div id='custdetails' style='width:250px;height:230px; border:1px solid #3F691E; border-radius: 2px'><p style='font-size:16px; border:1px solid #3F691E ; margin: 4px;padding: 4px;border-radius: 4px;'> <I><b>" + markerContent[i] + "</I></b> </br>" + data[i].custAdd + "</br>"+ data[i].custCity +"</br>"+ data[i].custState + "</br>" + data[i].storeContact + "</br> <button style='position:relative; left:10px;width:160px;height:25px; text-align:center;font-size:14px;margin:auto; background-color: #3F691E; color:white; font-weight: 300;border-radius: 4px; padding: 4px' onclick='NavCust(" + data[i].custid + ")'>GO TO CUSTOMER </button></p><p style='font-size: 14px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'> MAP STATUS</p><p style='font-size: 12px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'></p><div style='padding: 5px 0px;width: 240px;height: 45px;display: block;margin: auto;position: relative;'><div id='"+ data[i].custid +"unassigned' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+unassignedstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/placeholder.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(6," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"moneybag' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block; background-color:"+oppstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/money-bag.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(1," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"tagblack' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+tagstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/tag-black.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(2," + data[i].custid +"," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"notepencil' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;background-color:"+notestyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/note-pencil.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(3," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"servicerepair' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block; background-color:"+techstyle+"'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/repairing-service.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(5," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div><div id='"+ data[i].custid +"alarm' style='border:.5px solid #3F691E;width: 35px;height: 35px;border-radius: 2px;padding: 2px;display: inline-block;'> <img src='https://cdn.jsdelivr.net/gh/atismohanty/joanne@latest/alarm-icon.svg' style='width: 30px;height: 30px; padding: 1px 3px' onclick='changeStatus(4," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'></img></div></div></div>"});
+						content:"<div id='custdetails' style='width:200px;height:auto; border:none #3F691E; border:.5px solid grey; padding: 5px 0px ; border-radius:5px'> <button style='position:relative; width:180px;margin:0px 10px; height:25px; text-align:center;font-size:14px; background-color: #3F691E; color:white; font-weight: 300;border-radius: 4px; padding: 4px' onclick='NavCust(" + data[i].custid + ")'>GO TO CUSTOMER </button> <p style='font-size:16px; border:1px solid #3F691E ; margin: 4px;padding: 4px;border-radius: 4px;'> <b>" + markerContent[i] + "</b> </br>" + data[i].custAdd + "</br>"+ data[i].custCity +"</br>"+ data[i].custState + "</br>" + data[i].storeContact + "</br> </p><div style='padding: 0px 0px;width: 195px;height: auto;display: block;margin: auto;position: relative; background-color:#f1e8e8; border:.5px solid grey'> <p style='font-size: 14px; color:black;position: relative; width: 140px; text-align: center;margin:auto;padding: 2px;height:10px'><b> STATUS</b></p></br> <div id='"+ data[i].custid +"unassigned' style='border: 2px solid #666666;width: 35px;height: 35px;margin: 2px 1px;border-radius: 50px;padding: 2px;display: inline-block;"+ unassstyle +"' onclick='changeStatus(1," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'> </div><div id='"+ data[i].custid +"opportunity' style='border: 2px solid #009833;width: 35px;height: 35px;margin: 2px 1px;border-radius: 50px;padding: 2px;display: inline-block; "+oppstyle+"' onclick='changeStatus(2," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'> </div><div id='"+ data[i].custid +"tagstore' style='border: 2px solid #FF9833;width: 35px;height: 35px;margin: 2px 1px;border-radius: 50px;padding: 2px;display: inline-block;"+tagstyle+"' onclick='changeStatus(3," + data[i].custid +"," + data[i].lat + "," + data[i].lng +")'> </div><div id='"+ data[i].custid +"estimate' style='border: 2px solid #722CFD;width: 35px;height: 35px;margin: 2px 1px;border-radius: 50px;padding: 2px;display: inline-block;"+eststyle+"' onclick='changeStatus(4," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'> </div><div id='"+ data[i].custid +"workorder' style='border: 2px solid #FF0000;width: 35px;height: 35px;margin: 2px 1px;border-radius: 50px;padding: 2px;display: inline-block; "+wostyle+"' onclick='changeStatus(5," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'> </div><div id='"+ data[i].custid +"installation' style='border: 2px solid #00BAFB;width: 35px;height: 35px;margin: 2px 1px;border-radius: 50px;padding: 2px;display: inline-block; "+instlstyle+"' onclick='changeStatus(6," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'> </div><div id='"+ data[i].custid +"delivery' style='border: 2px solid #0000FF;width: 35px;height: 35px;margin: 2px 1px;border-radius: 50px;padding: 2px;display: inline-block; "+succstyle+"' onclick='changeStatus(7," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'> </div><div id='"+ data[i].custid +"noactivity' style='border: 2px solid #FFFF33;width: 35px;height: 35px;margin: 2px 1px;border-radius: 50px;padding: 2px;display: inline-block; "+noactstyle+"' onclick='changeStatus(8," + data[i].custid + "," + data[i].lat + "," + data[i].lng +")'> </div></div></div>"});
 					infowindow[i].open(mapadd, marker[i]);
 				}
 			}
@@ -331,12 +391,15 @@ function NavCust(id)
 }
 function changeStatus(opps, custid, lat, lng)
 {
-	if (opps==1) opps="opportunity";
-	else if (opps==2) opps="tagstore";
-	else if (opps==3) opps="estimate";
-	else if (opps==4) opps="alarm";
-	else if (opps==5) opps="techsupport";
-	else if (opps==6) opps="unassigned";
+	
+	if (opps==1) opps="unassigned";
+	else if (opps==2) opps="opportunity";
+	else if (opps==3) opps="tagstore";
+	else if (opps==4) opps="estimate";
+	else if (opps==5) opps="workorder";
+	else if (opps==6) opps="installation";
+	else if (opps==7) opps="successfuldelivery";
+	else if (opps==8) opps="noactivity";
 
 	var paramfm = opps +"~"+ custid +"~"+ lat +"~"+ lng;
 	//alert(paramfm);
