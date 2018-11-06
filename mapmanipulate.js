@@ -27,7 +27,7 @@ function initMap(info,paramlat,paramlng,paramzoom)
 	for (var i=0 ; i< arr.length-1 ; i++)
 		{
 			var arr2 = arr[i+1].split('~');
-			data[i] =   {
+			data[i] = {
 							"custid": arr2[0],
 							"custname": arr2[1],
 							"lng": arr2[3],
