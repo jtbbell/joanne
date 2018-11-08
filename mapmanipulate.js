@@ -143,7 +143,7 @@ function initMap(info,paramlat,paramlng,paramzoom)
 
 	else if(data[i].custtype=="Current User")
 	{
-		iconImg[i] = filePath + "gps-fixed-indicator.svg";
+		iconImg[i] = filePath + "gps-fixed-indicator.png";
 	}
 		
 		
